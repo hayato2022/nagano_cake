@@ -1,19 +1,29 @@
 <h2>商品一覧</h2>
 <!--新規登録ボタン-->
-<%= link_to new_admin_item_path do %>
+<p><%= link_to new_admin_item_path do %>
   <i class="fa-thin fa-circle-plus"></i>
 <% end %>
-
+</p>
 <!--商品一覧-->
-<table class="table">
-  <thead>
+<table class="table table-borderless">
+  <thead class="thead-light">
     <tr>
       <th>商品ID</th>
       <th>商品名</th>
       <th>税抜価格</th>
       <th>ジャンル</th>
-      <th colspan="3"></th>
       <th>ステータス</th>
     </tr>
   </thead>
+  <tbody>
+    <% @items.each do |item| %>
+    <tr>
+      <td><%= item.id %></td>
+      <td><%= item.name %></td>
+      <td><%= item.price %></td>
+      <td><%= item.genre.name %></td>
+      <td><%= item.is_active %></td>
+    </tr>
+    <% end %>
+  </tbody>
 </table>
