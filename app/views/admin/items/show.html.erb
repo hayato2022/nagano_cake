@@ -9,7 +9,11 @@
   <p>商品説明 <%= @item.introduction %></p>
   <p>ジャンル <%= @item.genre.name %></p>
   <p>税抜価格 <%= @item.price %></p>
-  <p>販売ステータス <%= @item.is_active %></p>
+  <% if @item.is_active? %>
+    <p>販売ステータス  販売中</p>
+  <% else %>
+    <p>販売ステータス  販売停止中</p>
+  <% end %>
 </div>
 
 <div>
