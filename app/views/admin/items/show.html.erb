@@ -10,7 +10,7 @@
   <p>ジャンル <%= @item.genre.name %></p>
   <p>税抜価格 <%= @item.price %></p>
   <% if @item.is_active? %>
-    <p>販売ステータス  <span class="text-secondary">販売中</span></p>
+    <p>販売ステータス  <span class="text-success font-weight-bold">販売中</span></p>
   <% else %>
     <p>販売ステータス  <span class="text-muted">販売停止中</span></p>
   <% end %>
