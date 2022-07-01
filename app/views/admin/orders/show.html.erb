@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <p>購入者  <%= @order.customer.last_name %><%= @order.customer.first_name %></p>
+    <p>注文日  <%= l @order.created_at, format: :short %></p>
+    <p>配送先  〒<%= @order.postal_code %> <%= @order.address %></p>
+    <p>支払方法  <%= @order.payment_method %></p>
+    <%=form_with model: @order, url: admin_order_path(@order.id) do |f| %>
+      <div class="row">
+        <div class="col">
+          <%= f.label :注文ステータス %>
+        </div>
+        <div class="col">
+          <%= f.collection_select :status, @orders, :id, :status, prompt: "--選択肢を選んでください--" %>
+        </div>
+        <div class="col">
+          <%= f.submit "更新", class: "btn btn-success" %>
+        </div>
+      </div>
+    <% end %>
+    <div class="col">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>制作ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+        <%  @orders_details.each do |orders_detail| %>
+          <tr>
+            <td><%= orders_detail.item.name %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
