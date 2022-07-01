@@ -7,3 +7,8 @@ ja:
         production: "制作中"
         shipping_preparation: "発送準備中"
         shipped: "発送済み"
+
+ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
