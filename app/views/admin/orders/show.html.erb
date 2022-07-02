@@ -1,8 +1,11 @@
 <div class="container">
   <div class="row">
-    <p>購入者  <%= @order.customer.last_name %><%= @order.customer.first_name %></p>
+    <%= link_to admin_customer_path(@customer.id),class: "text-dark" do %>
+      <p>購入者  <%= @order.customer.last_name %> <%= @order.customer.first_name %></p>
+    <% end %>
     <p>注文日  <%= l @order.created_at, format: :short %></p>
-    <p>配送先  〒<%= @order.postal_code %> <%= @order.address %></p>
+    <p>配送先  〒<%= @order.postal_code %> <%= @order.address %></p><br>
+    <p><%= @order.customer.last_name %> <%= @order.customer.first_name %></p>
     <p>支払方法  <%= @order.payment_method %></p>
     <%=form_with model: @order, url: admin_order_path(@order.id) do |f| %>
       <div class="row">
@@ -32,6 +35,9 @@
         <%  @orders_details.each do |orders_detail| %>
           <tr>
             <td><%= orders_detail.item.name %></td>
+            <td><%= orders_detail.add_tax_price.to_s(:delimited) %></td>
+            <td><%= orders_detail.amount %></td>
+            <td></td>
           </tr>
         <% end %>
         </tbody>
