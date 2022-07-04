@@ -13,7 +13,7 @@
           <%= f.label :注文ステータス %>
         </div>
         <div class="col">
-          <%= f.collection_select :status, @orders, :id, :status, prompt: "--選択肢を選んでください--" %>
+          <%= f.select :status, @orders, :id, :status, prompt: "--選択肢を選んでください--" %>
         </div>
         <div class="col">
           <%= f.submit "更新", class: "btn btn-success" %>
