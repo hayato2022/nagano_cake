@@ -1,3 +1,20 @@
 <div class="container">
-  div
+    <div class="row">
+        <!--ここに画像を挿入-->
+        <p>
+            ようこそ、ながのCAKEへ！</br>
+            このサイトは、ケーキ販売のECサイトになります。</br>
+            会員でない方も商品の閲覧はできますが、</br>
+            購入には会員登録が必要になります。
+        </p>
+    </div>
+    <div class="row">
+        <% @items.each do |item| %>
+            <div class="col">
+                <%= image_tag item.image, size: "200x200" %>
+                <p><%= item.name %></p>
+                <p><%= item.price %></p>
+            </div>
+        <% end %>
+    </div>
 </div>

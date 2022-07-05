@@ -1,5 +1,9 @@
 <h2>商品編集</h2>
 <%= form_with model: @item, url: admin_item_path(@item.id), method: :patch do |f| %>
+  <div class="form-group">
+    <%= f.label :商品画像 %>
+    <%= f.file_field :image, accept: "image/*" %>
+  </div>
   <div class="field">
     <%= f.label :商品名 %>
     <%= f.text_field :name, placeholder: "商品名" %>
