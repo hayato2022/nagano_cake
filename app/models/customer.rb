@@ -6,4 +6,10 @@ class Customer < ApplicationRecord
 
   has_many :orders, dependent: :destroy
 
+  validates :last_name, format: { with: /\A[一-龥]+\z/ }
+  validates :last_name_kana, format: {with: /\p{katakana}/ }
+  validates :first_name_kana, format: {with: /\p{katakana}/ }
+  validates :postal_code, format: { with: /\A\d{7}\z/ }
+  validates :telephone_number, format: { with: /\A\d{10,11}\z/ }
+
 end
