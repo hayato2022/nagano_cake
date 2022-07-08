@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get "/about" => "homes#about"
     resources :items, only: [:index, :show]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+  
     # public/customers
     get "customers/my_page" => "customers#show"
     get "customers/information/edit" => "customers#edit"
