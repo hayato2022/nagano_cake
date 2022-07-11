@@ -2,7 +2,10 @@ class Public::ItemsController < ApplicationController
 
   def index
     @genres = Genre.all
-    @genre = Genre.find(params[:id])
+
+    @items = Item.all
+
+
   end
 
   def show
