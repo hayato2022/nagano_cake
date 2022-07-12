@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+     <!--サイドバー（ジャンル検索）-->
+    <%= render "genres_sidebar", genres: @genres %>
+
+    <!--商品詳細-->
+    <div class="col">
+      <%= image_tag @item.get_image(300,250) %>
+    </div>
+    <div class="col">
+      <h5><%= @item.name %></h5>
+      <p><%= @item.introduction %></p>
+      <p>¥<%= @item.add_tax_price.to_s(:delimited) %></p>
+      
+      <%= form_with model: @cart_item do |f| %>
+      <%= f.hidden_field :amount, :value => @cart_item.amount %>
+      
+      <% end %>
+    </div>
+  </div>
+</div>
