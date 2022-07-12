@@ -10,7 +10,11 @@
           <tbody class="table table-borderless">
             <% @genres.each do |genre| %>
             <tr>
-              <td><%= genre.name %></td>
+              <td>
+                <%= link_to items_path( genre_id: @genre) do %>
+                  <%= genre.name %>
+                <% end %>
+              </td>
             </tr>
             <% end %>
           </tbody>
@@ -20,7 +24,7 @@
 
   <!--ジャンル、商品一覧-->
     <div class="col-md-8 offset-md-1">
-      <h3>商品一覧</h3>
+      <h3><%= @item_name %>一覧</h3>
       <% @items.each do |item| %>
         <div class = "col">
           <%= image_tag item.image, size: "200x150" %>
