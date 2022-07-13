@@ -26,7 +26,13 @@ class Public::ItemsController < ApplicationController
   def show
     @genres = Genre.all
     @item = Item.find(params[:id])
-    @cart_item = CartItem.new
+    @cart_item = CartItem
+  end
+
+  private
+
+  def item_params
+    params.requie(:item).permit(:genre_id, :name, :introduction, :price, :image )
   end
 
 end

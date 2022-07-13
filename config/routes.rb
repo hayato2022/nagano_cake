@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     get "/about" => "homes#about"
     resources :items, only: [:index, :show]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-  
+    resources :cart_items, only: [:index, :create, :update, :destroy]
+    delete "cart_items/destroy_all" => "cart_items#destroy_all"
     # public/customers
     get "customers/my_page" => "customers#show"
     get "customers/information/edit" => "customers#edit"
