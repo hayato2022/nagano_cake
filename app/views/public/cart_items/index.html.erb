@@ -7,8 +7,8 @@
   </div>
 
   <div class="row">
-    <table class="table">
-      <thead>
+    <table class="table table-bordered">
+      <thead class="table-active">
         <tr>
           <th>商品名</th>
           <th>単価（税込）</th>
@@ -18,15 +18,16 @@
         </tr>
       </thead>
       <tbody>
-        <% if current_costomer.cart_items.present? %>
+        <% if current_customer.cart_items.present? %>
           <% @cart_items.each do |cart_item| %>
           <tr>
-            <td><%= image_tag.cart_item.item.image, size: "60x50" %> <%= cart_item.item.name %></td>
+            <td><%= image_tag cart_item.item.image, size: "60x50" %> <%= cart_item.item.name %></td>
             <td><%= cart_item.item.add_tax_price %></td>
             <td><%= cart_item.amount %></td>
             <td><%= cart_item.subtotal %></td>
             <td><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger" %> </td>
           </tr>
+          <%  @total += cart_item.subtotal %>
           <% end %>
         <% end %>
       </tbody>
@@ -35,15 +36,12 @@
       <%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %>
     </div>
     <div class="col">
-      <table class="table">
+      <table class="table table-bordered">
         <tbody>
-          <% @cart_items.each do |cart_item| %>
-          <% @total = @total + cart_item.subtotal %>
           <tr>
-            <td>合計金額</td>
+            <td class="table-active">合計金額</td>
             <td><%= @total %></td>
           </tr>
-          <% end %>
         </tbody>
       </table>
     </div>

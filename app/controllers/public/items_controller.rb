@@ -27,6 +27,7 @@ class Public::ItemsController < ApplicationController
     @genres = Genre.all
     @item = Item.find(params[:id])
     @cart_item = CartItem
+    @customer = current_customer
   end
 
 
