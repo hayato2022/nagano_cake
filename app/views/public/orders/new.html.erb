@@ -1,0 +1,62 @@
+<div class="container">
+  <h4>注文情報入力</h4>
+    <div class="row">
+      <%= form_with model: @order do |f| %>
+        <h5><strong>支払方法</strong></h5>
+        <div class="form-group">
+          <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+          <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %></br>
+
+          <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+          <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
+        </div>
+        <h5><strong>お届け先</strong></h5>
+
+        <div class="form-group">
+          <%= f.radio_button :address_id, '1' %>
+          <%= f.label :address_id, 'ご自身の住所', value: 1 %>
+          <p>〒<%= @customer.postal_code %><%= @customer.address %></br>
+              <%= @customer.last_name %><%= @customer.first_name %>
+          </p>
+        </div>
+
+        <div class="form-group">
+          <%= f.radio_button :address_id, '2' %>
+          <%= f.label :address_id, '登録済み住所から選択', value: 2 %></br>
+          <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+        </div>
+
+        <div class="form-group">
+          <%= f.radio_button :address_id, '3' %>
+          <%= f.label :address_id, '新しいお届け先', value: 3 %>
+        </div>
+
+          <div class="form-row">
+            <div class="col">
+              <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+            </div>
+            <div class="col">
+              <%= f.text_field :postal_code %>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+              <%= f.label :address, "住所" %>
+            </div>
+            <div class="col">
+              <%= f.text_field :address %>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+              <%= f.label :name, "宛名" %>
+            </div>
+            <div class="col">
+              <%= f.text_field :name %>
+            </div>
+          </div>
+      <% end %>
+  </div>
+</div>

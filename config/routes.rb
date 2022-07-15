@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
 
+  namespace :public do
+    get 'orders/new'
+    get 'orders/index'
+    get 'orders/show'
+  end
   # 会員側routes
     devise_for :customers, skip: [:passwords], controllers:{
       registrations: "public/registrations",
@@ -14,8 +19,7 @@ Rails.application.routes.draw do
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     delete "cart_items/destroy_all" => "cart_items#destroy_all"
     resources :cart_items, only: [:index, :create, :update, :destroy]
-
-    resources :orders, only: [:new]
+    resources :orders, only: [:new, :create, :index, :show]
     # public/customers
     get "customers/my_page" => "customers#show"
     get "customers/information/edit" => "customers#edit"

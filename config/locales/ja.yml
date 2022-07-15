@@ -8,6 +8,15 @@ ja:
         shipping_preparation: "発送準備中"
         shipped: "発送済み"
 
+
+  ja:
+    enums:
+      order:
+        payment_method:
+          credit_card: "クレジットカード"
+          transfer: "銀行振込"
+
+
 ja:
   time:
     formats:
