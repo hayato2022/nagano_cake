@@ -7,17 +7,9 @@ ja:
         production: "制作中"
         shipping_preparation: "発送準備中"
         shipped: "発送済み"
-
-
-  ja:
-    enums:
-      order:
-        payment_method:
-          credit_card: "クレジットカード"
-          transfer: "銀行振込"
-
-
-ja:
+      payment_method:
+        credit_card: "クレジットカード"
+        transfer: "銀行振込"
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
