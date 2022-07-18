@@ -60,3 +60,5 @@ gem 'devise'
 gem 'pry-rails'
 
 gem 'enum_help'
+
+gem 'pry-byebug', group: :development

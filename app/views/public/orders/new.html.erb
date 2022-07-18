@@ -13,22 +13,22 @@
         <h5><strong>お届け先</strong></h5>
 
         <div class="form-group">
-          <%= f.radio_button :address_id, '1' %>
-          <%= f.label :address_id, 'ご自身の住所', value: 1 %>
+          <%= f.radio_button :select_address, '0' %>
+          <%= f.label :select_address, 'ご自身の住所', value: 0 %>
           <p>〒<%= @customer.postal_code %><%= @customer.address %></br>
               <%= @customer.last_name %><%= @customer.first_name %>
           </p>
         </div>
 
         <div class="form-group">
-          <%= f.radio_button :address_id, '2' %>
-          <%= f.label :address_id, '登録済み住所から選択', value: 2 %></br>
+          <%= f.radio_button :select_address, '1' %>
+          <%= f.label :select_address, '登録済み住所から選択', value: 1 %></br>
           <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
         </div>
 
         <div class="form-group">
-          <%= f.radio_button :address_id, '3' %>
-          <%= f.label :address_id, '新しいお届け先', value: 3 %>
+          <%= f.radio_button :select_address, '2' %>
+          <%= f.label :select_address, '新しいお届け先', value: 2 %>
         </div>
 
           <div class="form-row">

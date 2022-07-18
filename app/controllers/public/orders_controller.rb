@@ -7,6 +7,10 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
+    @order = Order.new(order_params)
+    if params([:order][:select_address]) == "1"
+    end
+
   end
 
   def complete
@@ -24,7 +28,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:name, :postal_code, :address, :payment_method, :postage, :amount_billed)
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name)
   end
 
 end
