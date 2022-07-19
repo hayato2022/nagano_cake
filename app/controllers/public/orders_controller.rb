@@ -7,6 +7,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
+    @cart_items = current_customer.cart_items.all
     @order = Order.new(order_params)
     # 選択された住所が自身の住所の場合。ラジオボタンの:select_addressが0
     if params([:order][:select_address]) == "0"
