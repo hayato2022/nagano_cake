@@ -8,7 +8,30 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-    if params([:order][:select_address]) == "1"
+    # 選択された住所が自身の住所の場合。ラジオボタンの:select_addressが0
+    if params([:order][:select_address]) == "0"
+      # ログインしている会員の郵便番号、住所、名前を取得
+      @order.postal_code = current_customer.postal_code
+      @order.address = current_customer.address
+      @order.name = current_customer.last_name + current_customer.first_name
+
+    # 選択された住所が「登録済み住所から選択」の場合。ラジオボタンの:select_addressが1
+    elsif params([:order][:select_address]) =="1"
+      # 送られた情報をもとに配送先モデルから検索。配送先(Address)モデルから送られてきた ID をもとに取得
+      @address = Address.find(params[:order][:address_id])
+      # @order の中に配送先(Address)モデルから取得した情報を格納
+      @order.postal_code = @address.postal_code
+      @order.address = @address.address
+      @order.name = @address.name
+
+      # 選択された住所が新しいお届け先の場合。ラジオボタン:select_addressの値が２
+    elsif params([:order][:select_address] == "2")
+      @order.postal_code = @order.postal_code
+      @order.address = @order.address
+      @order.name = @order.name
+
+    else
+      render :new
     end
 
   end
