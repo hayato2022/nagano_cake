@@ -8,15 +8,15 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @cart_items = current_customer.cart_items.all
-    
+
     # 小計
     @total = @cart_items.inject(0){|sum, item| sum + item.subtotal }
 
     @postage = 800 #送料
      # 請求合計額
-    @amount_billed =@cart_items.inject(0){|sum, item| sum + item.subtotal } + @postage 
-   
-    
+    @amount_billed =@cart_items.inject(0){|sum, item| sum + item.subtotal } + @postage
+
+
     @order = Order.new(order_params)
     # 選択された住所が自身の住所の場合。ラジオボタンの:select_addressが0
     if params[:order][:payment_method] == "credit_card"
@@ -56,6 +56,32 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
+    @order = Order.new(order_params)
+    cart_items = current_customer.cart_items.all
+    @order.customer_id = current_customer.id
+    if @order.save
+      cart_items.each do |cart_item|
+        # OrdersDetaiモデルに保存するための空の箱
+        orders_details = OrdersDetail.new
+        # OrdersDetaiのitem_idカラムにカートに入れた商品のidを入れる
+        orders_details.item_id = cart_item.item_id
+        # OrdersDetaiのorder_idカラムに取得した注文idをいれる
+        orders_details.order_id = @order.id
+        #  OrdersDetaiのamountカラムにカートに入れた商品の数をいれる
+        orders_details.amount = cart_item.amount
+        # OrdersDetaiのpriceカラムにカートに入れた商品の価格のデータを入れる
+        orders_details.price = cart_item.item.price
+        # カート情報を削除するので item との紐付けが切れる前に保存
+        orders_details.save
+      end
+      redirect_to orders_complete_path
+      # カート内商品を削除
+      cart_items.destroy_all
+    else
+      @order = Order.new(order_params)
+      render :new
+    end
+
   end
 
   def index
@@ -67,7 +93,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:payment_method, :postal_code, :address, :name)
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :postage, :amount_billed)
   end
 
 end
