@@ -8,10 +8,15 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @cart_items = current_customer.cart_items.all
-    @postage = 800 #送料
-    @total =0
-    @amount_billed = 0
+    
+    # 小計
+    @total = @cart_items.inject(0){|sum, item| sum + item.subtotal }
 
+    @postage = 800 #送料
+     # 請求合計額
+    @amount_billed =@cart_items.inject(0){|sum, item| sum + item.subtotal } + @postage 
+   
+    
     @order = Order.new(order_params)
     # 選択された住所が自身の住所の場合。ラジオボタンの:select_addressが0
     if params[:order][:payment_method] == "credit_card"
