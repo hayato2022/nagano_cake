@@ -18,13 +18,14 @@ class Public::OrdersController < ApplicationController
 
 
     @order = Order.new(order_params)
-    # 選択された住所が自身の住所の場合。ラジオボタンの:select_addressが0
+
     if params[:order][:payment_method] == "credit_card"
       @payment_method = "クレジットカード"
     elsif params[:order][:payment_method] == "transfer"
       @payment_method = "銀行振込"
     end
 
+     # 選択された住所が自身の住所の場合。ラジオボタンの:select_addressが0
     if params[:order][:select_address] == '0'
       # ログインしている会員の郵便番号、住所、名前を取得
       @order.postal_code = current_customer.postal_code
@@ -58,6 +59,8 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     cart_items = current_customer.cart_items.all
+
+    # 取得したorder(注文)のcustomer_idカラムにログインしている会員のidを入れる
     @order.customer_id = current_customer.id
     if @order.save
       cart_items.each do |cart_item|
@@ -78,13 +81,17 @@ class Public::OrdersController < ApplicationController
       # カート内商品を削除
       cart_items.destroy_all
     else
-      @order = Order.new(order_params)
-      render :new
+
+      redirect_to new_order_path
     end
 
   end
 
   def index
+    @orders = Order.all
+
+    @orders_details = OrdersDetail.all
+
   end
 
   def show
