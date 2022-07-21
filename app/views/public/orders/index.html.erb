@@ -23,13 +23,15 @@
           </td>
 
           <td>
-            <% @orders_details.each do |orders_detail| %>
+            <!--@ordersで全取得した情報をeach文で一つずつデータを取り出している-->
+            <!--そのデータorderを使って、orderに関連するorders_detailsのデータをeach文で取り出していく-->
+            <% order.orders_details.each do |orders_detail| %>
             <%= orders_detail.item.name %></br>
             <% end %>
           </td>
 
           <td><%= order.amount_billed %></td>
-          <td><%= order.status %></td>
+          <td><%= order.status_i18n %></td>
           <td><%= link_to "表示する", order_path(order.id), class: "btn btn-primary" %></td>
         </tr>
         <% end %>

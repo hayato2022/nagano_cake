@@ -1,2 +1,75 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<div class="container">
+  <h4>注文履歴詳細</h4>
+
+  <div class="row">
+    <div class="col">
+      <p><strong>注文情報</strong></p>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <td class="table-active">注文日</td>
+            <td><%= l @order.created_at, format: :short %></td>
+          </tr>
+          <tr>
+            <td class="table-active">配送先</td>
+            <td><%= @order.address %></td>
+          </tr>
+          <tr>
+            <td class="table-active">支払方法</td>
+            <td><%= @order.payment_method_i18n %></td>
+          </tr>
+          <tr>
+            <td class="table-active">ステータス</td>
+            <td><%= @order.status_i18n %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <% @orders_details.each do |orders_detail| %>
+      <%  @total += orders_detail.subtotal %>
+    <% end %>
+    <div class="col">
+      <p><strong>請求情報</strong></p>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <td class="table-active">商品合計</td>
+            <td><%= @total %></td>
+          </tr>
+          <tr>
+            <td class="table-active">配送料</td>
+            <td><%= @order.postage %></td>
+          </tr>
+          <tr>
+            <td class="table-active"><strong>ご請求額</strong></td>
+            <td><%= @order.amount_billed %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <table class="table table-bordered">
+      <thead class="table-active">
+        <tr>
+          <th>商品</th>
+          <th>単価（税込）</th>
+          <th>個数</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders_details.each do |orders_detail| %>
+        <tr>
+          <td><%= orders_detail.item.name %></td>
+          <td><%= orders_detail.price %></td>
+          <td><%= orders_detail.amount %></td>
+         <td><%= orders_detail.subtotal %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

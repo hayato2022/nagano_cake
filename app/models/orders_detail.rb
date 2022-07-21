@@ -8,4 +8,8 @@ class OrdersDetail < ApplicationRecord
     (self.price * 1.10).round
   end
 
+  def subtotal
+    price * amount
+  end
+
 end

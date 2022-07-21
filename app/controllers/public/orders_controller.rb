@@ -14,16 +14,12 @@ class Public::OrdersController < ApplicationController
 
     @postage = 800 #送料
      # 請求合計額
-    @amount_billed =@cart_items.inject(0){|sum, item| sum + item.subtotal } + @postage
+    @amount_billed = @cart_items.inject(0){|sum, item| sum + item.subtotal } + @postage
 
 
     @order = Order.new(order_params)
 
-    if params[:order][:payment_method] == "credit_card"
-      @payment_method = "クレジットカード"
-    elsif params[:order][:payment_method] == "transfer"
-      @payment_method = "銀行振込"
-    end
+     @customer = current_customer
 
      # 選択された住所が自身の住所の場合。ラジオボタンの:select_addressが0
     if params[:order][:select_address] == '0'
@@ -63,6 +59,7 @@ class Public::OrdersController < ApplicationController
     # 取得したorder(注文)のcustomer_idカラムにログインしている会員のidを入れる
     @order.customer_id = current_customer.id
     if @order.save
+      # 取り出したカートアイテムの数繰り返す
       cart_items.each do |cart_item|
         # OrdersDetaiモデルに保存するための空の箱
         orders_details = OrdersDetail.new
@@ -73,7 +70,7 @@ class Public::OrdersController < ApplicationController
         #  OrdersDetaiのamountカラムにカートに入れた商品の数をいれる
         orders_details.amount = cart_item.amount
         # OrdersDetaiのpriceカラムにカートに入れた商品の価格のデータを入れる
-        orders_details.price = cart_item.item.price
+        orders_details.price = cart_item.item.add_tax_price
         # カート情報を削除するので item との紐付けが切れる前に保存
         orders_details.save
       end
@@ -89,12 +86,14 @@ class Public::OrdersController < ApplicationController
 
   def index
     @orders = Order.all
-
-    @orders_details = OrdersDetail.all
-
   end
 
   def show
+    @order = Order.find(params[:id])
+    # 特定の注文id(@order)に関連付けれた、商品の情報をすべて取得し、@orders_detailsに渡す
+    # したがって、注文IDの商品の情報の数だけ、複数存在
+    @orders_details = @order.orders_details
+    @total = 0
   end
 
   private
