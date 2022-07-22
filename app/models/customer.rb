@@ -11,9 +11,13 @@ class Customer < ApplicationRecord
 
 
 
-  validates :last_name_kana, format: {with: /\p{katakana}/ }
-  validates :first_name_kana, format: {with: /\p{katakana}/ }
-  validates :postal_code, format: { with: /\A\d{7}\z/ }
-  validates :telephone_number, format: { with: /\A\d{10,11}\z/ }
+  validates :last_name_kana,  format: {with: /\p{katakana}/ }, presence: true
+  validates :first_name_kana, format: {with: /\p{katakana}/ }, presence: true
+  validates :postal_code, format: { with: /\A\d{7}\z/ }, presence: true
+  validates :telephone_number, format: { with: /\A\d{10,11}\z/ }, presence: true
+  validates :email, presence: true, uniqueness: true
+  validates :postal_code, presence: true
+  validates :address, presence: true
+
 
 end
