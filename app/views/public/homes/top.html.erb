@@ -1,26 +1,28 @@
 <div class="container">
     <div class="row">
+        <%= render "public/items/genres_sidebar", genres: @genres %>
         <!--ここに画像を挿入-->
-        <%= image_tag 'ichigo.jpg',size: "600x300" %>
-        <p>
-            ようこそ、ながのCAKEへ！</br>
-            このサイトは、ケーキ販売のECサイトになります。</br>
-            会員でない方も商品の閲覧はできますが、</br>
-            購入には会員登録が必要になります。
-        </p>
-    </div>
-    <div class="row">
-        <% @items.each do |item| %>
-            <div class="col">
-                <%= link_to item_path(item.id), class: "text-dark" do %>
-                    <%= image_tag item.image, size: "200x150" %>
-                    <p><%= item.name %></p>
-                    <p><%= item.price %></p>
+        <div class="col-md-8 mt-4 ">
+            <%= image_tag 'ichigo.jpg',size: "600x300" %>
+            <p>
+                ようこそ、ながのCAKEへ！</br>
+                このサイトは、ケーキ販売のECサイトになります。</br>
+                会員でない方も商品の閲覧はできますが、</br>
+                購入には会員登録が必要になります。
+            </p>
+
+            <div class="row">
+                <% @items.each do |item| %>
+                    <div class="col">
+                        <%= link_to item_path(item.id), class: "text-dark" do %>
+                            <%= image_tag item.image, size: "150x100" %>
+                            <p><%= item.name %></p>
+                            <p><%= item.price %></p>
+                        <% end %>
+                    </div>
                 <% end %>
             </div>
-        <% end %>
-    </div>
-    <div class="row">
-        <%= link_to "全ての商品を見る>", items_path %>
+            <p class="text-right"><%= link_to "全ての商品を見る>", items_path %></p>
+        </div>
     </div>
 </div>
