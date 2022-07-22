@@ -19,7 +19,7 @@ class Public::OrdersController < ApplicationController
 
     @order = Order.new(order_params)
 
-     @customer = current_customer
+
 
      # 選択された住所が自身の住所の場合。ラジオボタンの:select_addressが0
     if params[:order][:select_address] == '0'
