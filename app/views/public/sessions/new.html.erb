@@ -1,37 +1,54 @@
-<div class="container">
-<div class="row">
-    <h4 class="log-in" >ログイン</h4>
-  </div>
+<%= form_with model: @customer, url: customer_session_path do |f| %>
+  <div class="container">
 
-        <p>会員の方はこちらからログイン</p>
+    <div class="row mt-3 mb-4">
+      <div class="col-lg-2 ">
+        <h4 class="text-center">ログイン</h4>
+      </div>
+    </div>
 
-        <%= form_with model: @customer, url: customer_session_path do |f| %>
-          <div class="row">
-            <div class="col">
-              <%= f.label :メールアドレス %>
-            </div>
-            <div class="col">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %>
-            </div>
-          </div>
+    <div class="row ml-3 mb-4">
+      <div class="col-lg-4">
+        <h5 class="text text-center ">会員の方はこちらからログイン</h5>
+      </div>
+    </div>
 
-          <div class="row">
-            <div class="col">
-              <%= f.label :パスワード %>
-            </div>
-            <div class="col">
-              <%= f.password_field :password, autocomplete: "current-password" %>
-            </div>
-          </div>
+    <div class="row mb-3">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-4">
+        <%= f.label :email, "メールアドレス" %>
+      </div>
+      <div class="col-lg-7">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", size: 59, class: "rounded" %>
+      </div>
+    </div>
 
+    <div class="row mb-5">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-4">
+        <%= f.label :password, "パスワード" %>
+      </div>
+      <div class="col-lg-7">
+         <%= f.password_field :password, autocomplete: "current-password",size: 59, class: "rounded" %>
+      </div>
+    </div>
 
-
-          <div class="actions">
-            <%= f.submit "ログイン", class: "btn btn-primary" %>
-          </div>
-        <% end %>
-
-        <p>会員登録がまだお済みでない方</p>
+    <div class="row mb-5">
+      <div class="col-5"></div>
+      <div class="col-lg-7">
+        <%= f.submit "ログイン", class: "btn btn-primary" %>
+      </div>
+    </div>
+    <div class="row ml-3 mb-3">
+      <div class="col-lg-4">
+        <h5 class="text text-center">会員登録がまだお済みでない方</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-lg-10">
         <p><%= link_to "こちら", new_customer_registration_path %> から新規登録を行ってください。</p>
- </div>
-
+      </div>
+    </div>
+  </div>
+<% end %>
