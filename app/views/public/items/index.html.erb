@@ -4,7 +4,14 @@
     <%= render "genres_sidebar", genres: @genres %>
   <!--ジャンル、商品一覧-->
     <div class="col-md-8 offset-md-1">
-      <h3><%= @item_name %>一覧</h3>
+
+      <div class="row">
+        <div class="col">
+          <h3><strong><%= @item_name %>一覧</strong> (全<%= @items.count %>件)</h3>
+        </div>
+      </div>
+
+    <div class="row">
       <% @items.each do |item| %>
         <div class = "col">
           <%= link_to item_path(item.id), class: "text-dark" do %>
@@ -14,6 +21,14 @@
           <% end %>
         </div>
       <% end %>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <%= paginate @items %>
+      </div>
+    </div>
+
     </div>
   </div>
 </div>

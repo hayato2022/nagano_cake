@@ -11,13 +11,13 @@ class Public::ItemsController < ApplicationController
       @genre = Genre.find(params[:genre_id])
 
       # genreと紐づく商品を取得
-      @items = @genre.items.all
+      @items = @genre.items.page(params[:page])
 
       # ジャンルをクリックした場合は、genreの名前
       @item_name = @genre.name
     else
       #商品をすべて取得
-      @items = Item.all
+      @items = Item.page(params[:page])
       # クリックしていない場合は「商品」一覧
       @item_name = "商品"
     end
