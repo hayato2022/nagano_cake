@@ -18,13 +18,13 @@
           <%= f.label :last_name, "(性)" %>
         </div>
         <div class="col-lg-3">
-          <%= f.text_field :last_name %>
+          <%= f.text_field :last_name, class: "rounded" %>
         </div>
         <div class="col-lg-1">
           <%= f.label :first_name, "(名)" %>
         </div>
         <div class="col-lg-3">
-          <%= f.text_field :first_name, class: "form_text" %>
+          <%= f.text_field :first_name, class: "rounded" %>
         </div>
       </div>
 
@@ -36,13 +36,13 @@
           <%= f.label :last_name_kana, "(セイ)" %>
         </div>
         <div class="col-lg-3">
-          <%= f.text_field :last_name_kana, class: "form_text"  %>
+          <%= f.text_field :last_name_kana, class: "rounded" %>
         </div>
         <div class="col-lg-1 px-1">
           <%= f.label :first_name_kana, "(メイ)" %>
         </div>
         <div class="col-lg-3">
-          <%= f.text_field :first_name_kana, class: "form_text"  %>
+          <%= f.text_field :first_name_kana, class: "rounded" %>
         </div>
       </div>
 
@@ -51,7 +51,7 @@
           <%= f.label :email, "メールアドレス" %>
         </div>
         <div class="col-lg-3">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "rounded" %>
         </div>
         <div class="col-lg-4"></div>
       </div>
@@ -60,7 +60,7 @@
           <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
         </div>
         <div class="col-lg-3">
-          <%= f.text_field :postal_code %>
+          <%= f.text_field :postal_code, class: "rounded" %>
         </div>
         <div class="col-lg-4"></div>
       </div>
@@ -70,7 +70,7 @@
           <%= f.label :address, "住所" %>
         </div>
         <div class="col-lg-7">
-          <%= f.text_field :address, size: 59 %>
+          <%= f.text_field :address, size: 59, class: "rounded" %>
         </div>
       </div>
 
@@ -79,7 +79,7 @@
           <%= f.label :telephone_number, "電話番号(ハイフンなし)" %>
         </div>
         <div class="col-lg-3">
-          <%= f.text_field :telephone_number %>
+          <%= f.text_field :telephone_number, class: "rounded" %>
         </div>
         <div class="col-lg-4"></div>
       </div>
@@ -91,17 +91,17 @@
             <% end %>
         </div>
         <div class="col-lg-3">
-          <%= f.password_field :password, autocomplete: "new-password" %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "rounded" %>
         </div>
         <div class="col-lg-4"></div>
       </div>
 
-      <div class="row mb-2">
+      <div class="row mb-4">
         <div class="col-lg-5">
           <%= f.label :password_confirmation, "パスワード確認用"%>
         </div>
         <div class="col-lg-3">
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "rounded" %>
         </div>
         <div class="col-lg-4"></div>
       </div>
