@@ -6,14 +6,14 @@
     <div class="col-md-9">
 
       <div class="row mt-5">
-        <div class="col">
+        <div class="col mb-3">
           <h3><strong><%= @item_name %>一覧</strong> (全<%= @items.count %>件)</h3>
         </div>
       </div>
 
     <div class="row">
       <% @items.each do |item| %>
-        <div class = "col">
+        <div class = "col mb-2">
           <%= link_to item_path(item.id), class: "text-dark" do %>
             <%= image_tag item.get_image(200,140) %>
             <p><%= item.name %></p>

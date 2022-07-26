@@ -4,17 +4,17 @@
     <%= render "genres_sidebar", genres: @genres %>
 
     <!--商品詳細-->
-    <div class="col">
-      <%= image_tag @item.get_image(400,350) %>
+    <div class="col mt-5">
+      <%= image_tag @item.get_image(380,300) %>
     </div>
-    <div class="col">
+    <div class="col mt-5">
       <h4><strong><%= @item.name %></strong></h4>
       <h5><%= @item.introduction %></h5>
-      <h5>¥<%= @item.add_tax_price.to_s(:delimited) %></h5>
+      <h5 class="mt-5">¥<%= @item.add_tax_price.to_s(:delimited) %></h5>
 
       <%= form_with model: @cart_item, url: cart_items_path, method: :post, class: "form-inline" do |f| %>
         <%= f.hidden_field :item_id, :value => @item.id %>
-          <div class="form-group mr-5 mt-5">
+          <div class="form-group mr-5 pt-5">
             <%= f.select :amount, *[1..10], prompt: "個数選択" %>
           </div>
           <div class="form-group mt-5">
