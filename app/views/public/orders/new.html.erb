@@ -1,8 +1,8 @@
 
 <%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
 <div class="container">
-  <div class="row">
-    <div class="col-lg-2">
+  <div class="row ml-5">
+    <div class="col-lg-3 mt-4 mb-3">
       <h4 class="text-color text-center">注文情報入力</h4>
     </div>
   </div>
@@ -17,7 +17,7 @@
       <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
     <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
     </div>
-    <div class="col-lg-12 ml-5">
+    <div class="col-lg-12 ml-5 mb-3">
       <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
     <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
     </div>
@@ -38,11 +38,14 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-12 ml-5">
+    <div class="col-lg-12 ml-5 mb-3">
       <%= f.radio_button :select_address, '1' %>
       <%= f.label :select_address, '登録済み住所から選択', class: "select-size" %></br>
-      <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+      <div class="box">
+        <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+      </div>
     </div>
+
   </div>
   <div class="row">
     <div class="col-lg-12 ml-5">
@@ -64,7 +67,7 @@
       <%= f.label :address, "住所" %>
     </div>
     <div class="col-lg-3 ml-7 ">
-      <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", size: 50, class: "rounded" %>
+      <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", size: 65, class: "rounded" %>
     </div>
   </div>
   <div class="row mb-2">

@@ -43,6 +43,6 @@ select{
   background-repeat: no-repeat;
 }
 
-.select-size{
+.box select{
   width: 80%;
 }
