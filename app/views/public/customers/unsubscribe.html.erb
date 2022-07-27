@@ -1,20 +1,27 @@
 <div class="container">
+  <div class="row my-5"></div>
   <div class="row">
-    <p><storng>本当に退会しますか？</storng></p>
+    <div class="col-lg-12 mb-5 text-center">
+      <h4><strong>本当に退会しますか？</strong></h4>
+    </div>
   </div>
   <div class="row">
-    <p>
+    <div class="col-lg-12 mb-5 text-center">
+      <h5>
       退会すると、会員登録情報や</br>
       これまでの購入履歴が閲覧できなくなります。</br>
       退会する場合は、「退会する」をクリックしてください。
-    </p>
+    </h5>
+    </div>
   </div>
-  <div class="row">
-    <div class="col">
+  <div class="row ">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-2 text-center">
       <%= link_to "退会しない", customers_my_page_path, class: "btn btn-primary" %>
     </div>
-    <div class="col">
+    <div class="col-lg-2 text-center">
       <%= link_to "退会する", customers_withdrawal_path, method: :patch, "data_confirm" => "本当に退会しますか？", class: "btn btn-danger" %>
     </div>
+    <div class="col-lg-4"></div>
   </div>
 </div>
