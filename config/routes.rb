@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get 'orders/show'
   end
   # 会員側routes
-    devise_for :customers, skip: [:passwords], controllers:{
+    devise_for :customers, skip: [:registrations, :passwords], controllers:{
       registrations: "public/registrations",
       sessions: "public/sessions"
     }
@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # 管理者側routes
-  devise_for :admin, skip: [:registrations, :passwords], controllers:{
+  devise_for :admin, skip: [:passwords], controllers:{
     sessions: "admin/sessions"
   }
 

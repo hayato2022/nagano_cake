@@ -12,4 +12,8 @@ class OrdersDetail < ApplicationRecord
     price * amount
   end
 
+  def amount_total
+    amount + amount
+  end
+
 end
