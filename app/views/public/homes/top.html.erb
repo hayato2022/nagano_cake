@@ -1,21 +1,28 @@
 <div class="container">
     <div class="row">
         <%= render "public/items/genres_sidebar", genres: @genres %>
-        <!--ここに画像を挿入-->
-        <div class="col-md-8 mt-4 ">
-            <%= image_tag 'ichigo.jpg',size: "600x300" %>
-            <p>
-                ようこそ、ながのCAKEへ！</br>
-                このサイトは、ケーキ販売のECサイトになります。</br>
-                会員でない方も商品の閲覧はできますが、</br>
-                購入には会員登録が必要になります。
-            </p>
+        <div class="col-md-9 mt-5 ">
+            <div class="main-visual ">
+                <div class="main-visual-content mx-auto  py-4">
+                    <p class="main-visual-text ">
+                        ようこそ、ながのCAKEへ！</br>
+                        このサイトは、ケーキ販売のECサイトになります。</br>
+                        会員でない方も商品の閲覧はできますが、</br>
+                        購入には会員登録が必要になります。
+                    </p>
+                </div>
+            </div>
 
-            <div class="row">
+        <div class="row my-3">
+            <div class="col">
+                <h3><strong>新着商品</strong></h3>
+            </div>
+        </div>
+        <div class="row">
                 <% @items.each do |item| %>
-                    <div class="col">
+                    <div class="col mr-1">
                         <%= link_to item_path(item.id), class: "text-dark" do %>
-                            <%= image_tag item.image, size: "150x100" %>
+                            <%= image_tag item.image, size: "170x120" %>
                             <p><%= item.name %></p>
                             <p><%= item.price %></p>
                         <% end %>
