@@ -1,28 +1,64 @@
 
-  <div class="field">
-    <%= f.label :商品画像 %>
-    <%= f.file_field :image, accept: "image/*" %>
-  </div>
-  <div class="field">
-    <%= f.label :商品名 %>
-    <%= f.text_field :name, placeholder: "商品名" %>
-  </div>
-  <div class="field">
-    <%= f.label :商品説明 %>
-    <%= f.text_area :introduction, placeholder: "ここに説明文を記述します" %>
-  </div>
-  <div class="field">
-    <%= f.label :ジャンル %>
-    <%= f.collection_select :genre_id, genres, :id, :name, prompt: "--選択肢を選んでください--" %>
-  </div>
-  <div class="field">
-    <%= f.label :税抜価格 %>
-    <p><%= f.text_field :price, placeholder: "1000" %>円</p>
-  </div>
-  <div class="field">
-    <p>販売ステータス</p>
-    <%= f.radio_button :is_active, 'true' %>
-    <%= f.label :is_active, '販売中', value: true %>
-    <%= f.radio_button :is_active, 'false' %>
-    <%= f.label :is_active, '販売停止中', value: false %>
-  </div>
+  <div class="row mb-2">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-2">
+        <%= f.label :image, "商品画像" %>
+      </div>
+      <div class="col-lg-6">
+        <%= f.file_field :image, accept: "image/*" %>
+      </div>
+      <div class="col-lg-1"></div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-2">
+        <%= f.label :name, "商品名" %>
+      </div>
+      <div class="col-lg-6">
+        <%= f.text_field :name, size: 32, placeholder: "商品名" %>
+      </div>
+      <div class="col-lg-1"></div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-2">
+        <%= f.label :introduction, "商品説明" %>
+      </div>
+      <div class="col-lg-6">
+        <%= f.text_area :introduction, size: "34x5", placeholder: "ここに説明文を記述します" %>
+      </div>
+      <div class="col-lg-1"></div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-2">
+        <%= f.label :genre_id, "ジャンル" %>
+      </div>
+      <div class="col-lg-6">
+        <%= f.collection_select :genre_id, genres, :id, :name, prompt: "--選択肢を選んでください--" %>
+      </div>
+      <div class="col-lg-1"></div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-2">
+        <%= f.label :price, "税抜価格" %>
+      </div>
+      <div class="col-lg-6">
+        <p><%= f.text_field :price, placeholder: "1000" %>円</p>
+      </div>
+      <div class="col-lg-1"></div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-2">
+        <p>販売ステータス</p>
+      </div>
+      <div class="col-lg-6">
+        <%= f.radio_button :is_active, 'true' %>
+        <%= f.label :is_active, '販売中', value: true %>
+        <%= f.radio_button :is_active, 'false' %>
+        <%= f.label :is_active, '販売停止中', value: false %>
+      </div>
+      <div class="col-lg-1"></div>
+    </div>
