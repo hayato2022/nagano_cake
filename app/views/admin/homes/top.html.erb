@@ -19,9 +19,13 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <%= link_to admin_order_path(order.id), class: "text-dark" do %>
-          <td><%= l order.created_at %></td>
-        <% end %>
+
+          <td>
+            <%= link_to admin_order_path(order.id), class: "text-dark" do %>
+              <%= l order.created_at %>
+            <% end %>
+          </td>
+
         <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
         <!--購入者それぞれの注文した商品の合計の個数-->
         <% @amount_total = 0 %>

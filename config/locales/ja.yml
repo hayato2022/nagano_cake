@@ -10,7 +10,16 @@ ja:
       payment_method:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
+    orders_detail:
+      making_status:
+        not_start: "着手不可"
+        awaiting_production: "制作待ち"
+        production: "制作中"
+        production_completed: "制作完了"
+
+
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
       short: "%Y/%m/%d"
+
