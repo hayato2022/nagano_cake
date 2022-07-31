@@ -1,12 +1,13 @@
 <div class="container">
-  <div class="row">
+  <div class="row mb-2">
+    <div class="col-lg-1"></div>
     <div class="col-lg-3 text-center">
       <h4 class="text-color">注文履歴詳細</h4>
     </div>
-    <div class="col-lg-9"></div>
+    <div class="col-lg-8"></div>
   </div>
 
-  <div class="row">
+  <div class="row mb-2">
     <div class="col-lg-3">
       <h5>
         <%= link_to admin_customer_path(@customer.id),class: "text-dark" do %>
@@ -19,7 +20,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mb-2">
     <div class="col-lg-3">
       <h5><strong>注文日</strong></h5>
     </div>
@@ -27,7 +28,7 @@
       <h5><%= l @order.created_at, format: :short %></h5>
     </div>
   </div>
-  <div class="row">
+  <div class="row mb-2">
    <div class="col-lg-3">
       <h5><strong>配送先</strong></h5>
     </div>
@@ -38,7 +39,7 @@
       </h5>
     </div>
   </div>
-  <div class="row">
+  <div class="row mb-2">
     <div class="col-lg-3">
       <h5><strong>支払方法</strong></h5>
     </div>
@@ -47,7 +48,7 @@
     </div>
   </div>
   <%=form_with model: @order, url: admin_order_path(@order.id) do |f| %>
-  <div class="row">
+  <div class="row mb-4">
       <div class="col-lg-3">
         <h5><strong><%= f.label :status, "注文ステータス" %></strong></h5>
       </div>
@@ -63,7 +64,7 @@
 
   <%= form_with model: @orders_detail, url: admin_order_orders_detail_path(@orders_detail.id), method: :patch do |f| %>
   <div class="row">
-    <div class="col-lg-9">
+    <div class="col-lg-8">
       <table class="table">
         <thead class="thead-light">
           <tr>
@@ -81,13 +82,20 @@
             <td><%= orders_detail.add_tax_price.to_s(:delimited) %></td>
             <td><%= orders_detail.amount %></td>
             <td><%= orders_detail.subtotal %></td>
-            <td><%= f.select :making_status, OrdersDetail.making_statuses.keys.map {|k| [I18n.t("enums.orders_detail.making_status.#{k}"), k]} %> <%= f.submit "更新", class: "btn btn-success" %></td>
+            <td><%= f.select :making_status, OrdersDetail.making_statuses.keys.map {|k| [I18n.t("enums.orders_detail.making_status.#{k}"), k]} %> <span class="button"><%= f.submit "更新", class: "btn btn-success" %></span></td>
           </tr>
+          <%  @total += orders_detail.subtotal %>
         <% end %>
         </tbody>
       </table>
     </div>
-    <div class="col-lg-3"></div>
+    <div class="col-lg-1"></div>
+    <div class="col-lg-3  mt-5">
+      <h5><strong>商品合計</strong> <span class="text-position1"><%= @total %>円</span></h5>
+      <h5><strong>送料</strong> <span class="text-position2"><%= @postage %>円</span></h5>
+      <% @amount_billed = @total + @postage %>
+      <h5><strong>請求合計額</strong> <strong><span class="text-position3"><%= @amount_billed %>円</span></strong></h5>
+    </div>
   </div>
   <% end %>
 </div>

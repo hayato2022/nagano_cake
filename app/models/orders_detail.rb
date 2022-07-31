@@ -11,7 +11,7 @@ class OrdersDetail < ApplicationRecord
   end
 
   def subtotal
-    price * amount
+    add_tax_price * amount
   end
 
 

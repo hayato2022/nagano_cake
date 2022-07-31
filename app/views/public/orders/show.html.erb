@@ -70,7 +70,7 @@
         <% @orders_details.each do |orders_detail| %>
         <tr>
           <td><%= orders_detail.item.name %></td>
-          <td><%= orders_detail.price %></td>
+          <td><%= orders_detail.add_tax_price.to_s(:delimited) %></td>
           <td><%= orders_detail.amount %></td>
          <td><%= orders_detail.subtotal %></td>
         </tr>

@@ -4,8 +4,11 @@ class Admin::OrdersController < ApplicationController
     @orders = Order.all
     @order = Order.find(params[:id])
     @orders_detail = OrdersDetail.find(params[:id])
-    @orders_details = OrdersDetail.all
+    @orders_details = @order.orders_details
     @customer = @order.customer
+    @total = 0
+    @postage = 800
+    @amount_billed = 0
   end
 
   def update
