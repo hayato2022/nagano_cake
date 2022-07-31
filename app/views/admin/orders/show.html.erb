@@ -60,10 +60,34 @@
       </div>
   </div>
    <% end %>
+
+  <%= form_with model: @orders_detail, url: admin_order_orders_detail_path(@orders_detail.id), method: :patch do |f| %>
   <div class="row">
     <div class="col-lg-9">
-      
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>制作ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+        <%  @orders_details.each do |orders_detail| %>
+          <tr>
+            <td><%= orders_detail.item.name %></td>
+            <td><%= orders_detail.add_tax_price.to_s(:delimited) %></td>
+            <td><%= orders_detail.amount %></td>
+            <td><%= orders_detail.subtotal %></td>
+            <td><%= f.select :making_status, OrdersDetail.making_statuses.keys.map {|k| [I18n.t("enums.orders_detail.making_status.#{k}"), k]} %> <%= f.submit "更新", class: "btn btn-success" %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
     </div>
     <div class="col-lg-3"></div>
   </div>
+  <% end %>
 </div>
