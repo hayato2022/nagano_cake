@@ -1,9 +1,8 @@
 class Admin::OrdersController < ApplicationController
 
   def show
-    @orders = Order.all
     @order = Order.find(params[:id])
-    @orders_detail = OrdersDetail.find(params[:id])
+
     @orders_details = @order.orders_details
     @customer = @order.customer
     @total = 0
@@ -14,6 +13,14 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.update(order_params)
+    # 注文ステータスと制作ステータスの更新の連動
+    @orders_details = @order.orders_details
+    if @order.status == "payment_confirmation"
+      @orders_details.each do |orders_detail|
+        orders_detail.making_status = "awaiting_production"
+        orders_detail.save
+      end
+    end
     redirect_to admin_order_path(@order.id)
   end
 

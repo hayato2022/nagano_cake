@@ -71,7 +71,7 @@ class Public::OrdersController < ApplicationController
         #  OrdersDetaiのamountカラムにカートに入れた商品の数をいれる
         orders_details.amount = cart_item.amount
         # OrdersDetaiのpriceカラムにカートに入れた商品の価格のデータを入れる
-        orders_details.price = cart_item.item.add_tax_price
+        orders_details.price = cart_item.item.price
         # カート情報を削除するので item との紐付けが切れる前に保存
         orders_details.save
       end
