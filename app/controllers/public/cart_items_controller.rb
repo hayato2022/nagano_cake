@@ -9,7 +9,7 @@ class Public::CartItemsController < ApplicationController
 
   def create
     @cart_item = current_customer.cart_items.new(cart_item_params)
-    
+
      # もし元々カート内に「同じ商品」がある場合、「数量を追加」更新・保存する
       #例.プリン２個、プリン２個ではなくプリン「4個」にしたい
     if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
@@ -27,7 +27,8 @@ class Public::CartItemsController < ApplicationController
       @cart_items =  current_customer.cart_items.all
       redirect_to cart_items_path
     else# 保存できなかった場合
-      render :index
+      @item = Item.find(params[:id])
+      render item_path(@item.id)
     end
   end
 
