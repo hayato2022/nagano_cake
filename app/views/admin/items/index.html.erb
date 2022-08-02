@@ -6,8 +6,8 @@
     <div class="col-lg-8"></div>
     <div class="col-lg-2">
       <p>
-        <%= link_to new_admin_item_path do %>
-          <i class="fa-thin fa-circle-plus"></i>
+        <%= link_to new_admin_item_path, class: "icon" do %>
+          <i class="fas fa-plus-circle"></i>
         <% end %>
       </p>
     </div>
@@ -55,8 +55,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-12 text-center">
+    <div class="col-4"></div>
+    <div class="col-4 text-center">
       <%= paginate @items %>
     </div>
-  </div>
+    <div class="col-4"></div>
+    </div>
 </div>
